@@ -47,6 +47,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Remove unwanted files (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          rm -rf ./release/0.0.0/win-unpacked/
+
       - name: Archive production artifacts (Windows)
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v3
@@ -59,4 +64,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-app-${{ runner.os }}
-          path: ./release/**/*.deb
+          path: ./release/**/*.AppImage
