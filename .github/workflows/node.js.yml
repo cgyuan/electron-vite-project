@@ -44,18 +44,19 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Archive production artifacts (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v3
         with:
-          tag_name: ${{ github.ref_name }}
-          # tauri-action replaces \_\_VERSION\_\_ with the app version
-          tagName: ${{ github.ref_name }}
-          releaseName: "Sample Release for Modern Desktop App v__VERSION__"
-          releaseBody: |
-            ${{steps.build_changelog.outputs.changelog}}
-            See the assets to download this version and install.
-          releaseDraft: true
-          prerelease: false
+          name: my-app-${{ runner.os }}
+          path: ./release/**/*.exe
+
+      - name: Archive production artifacts (Linux)
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-app-${{ runner.os }}
+          path: ./release/**/*.deb
