@@ -51,6 +51,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           rm -rf ./release/0.0.0/win-unpacked/
+        shell: bash
 
       - name: Archive production artifacts (Windows)
         if: runner.os == 'Windows'
