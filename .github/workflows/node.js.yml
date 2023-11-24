@@ -33,10 +33,10 @@ jobs:
           cache: yarn
 
       - name: Install
-        run: yarn i
+        run: yarn
 
       - name: Lint
-        run: yarn run lint
+        run: yarn lint
 
       # - name: Test
       #   run: pnpm run test
