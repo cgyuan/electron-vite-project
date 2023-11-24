@@ -30,13 +30,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
-          cache: pnpm
+          cache: yarn
 
       - name: Install
-        run: pnpm i
+        run: yarn i
 
       - name: Lint
-        run: pnpm run lint
+        run: yarn run lint
 
       # - name: Test
       #   run: pnpm run test
