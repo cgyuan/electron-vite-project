@@ -57,12 +57,12 @@ jobs:
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v3
         with:
-          name: my-app-${{ runner.os }}
+          name: my-app-${{ runner.os }}.exe
           path: ./release/**/*.exe
 
       - name: Archive production artifacts (Linux)
         if: runner.os == 'Linux'
         uses: actions/upload-artifact@v3
         with:
-          name: my-app-${{ runner.os }}
+          name: my-app-${{ runner.os }}.AppImage
           path: ./release/**/*.AppImage
